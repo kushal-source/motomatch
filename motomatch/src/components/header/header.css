@@ -1,0 +1,38 @@
+*{
+    font-family: 'Oswald';
+    margin: 0;
+  }
+  .header{
+    background: url('./images/harley-davidson-zGzXsJUBQfs-unsplash.jpg');
+    background-size:cover;
+    height: 100vh;
+  
+  }
+  .title{
+    font-size: xx-large;
+  }
+  .navbar{
+    display: flex;
+    position: absolute;
+    top: 25px;
+    left: 75%;
+    
+  }
+  .navbar li{
+    display: inline;
+    gap: 10px;
+    
+  }
+  .nav-links{
+    display: flex;
+    gap: 15px;
+  }
+  .navbar li a{
+    text-decoration: none;
+    font-size: large;
+  }
+  .header-img{
+    width: 200px;
+    height: 200px;
+  }
+  
