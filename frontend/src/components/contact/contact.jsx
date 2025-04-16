@@ -14,42 +14,65 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="p-6 max-w-xl mx-auto">
-      <h1 className="text-4xl font-bold text-center mb-6">Contact Us</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          type="text"
-          name="name"
-          placeholder="Your Name"
-          value={form.name}
-          onChange={handleChange}
-          className="w-full p-3 border rounded"
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Your Email"
-          value={form.email}
-          onChange={handleChange}
-          className="w-full p-3 border rounded"
-          required
-        />
-        <textarea
-          name="message"
-          placeholder="Your Message"
-          value={form.message}
-          onChange={handleChange}
-          className="w-full p-3 border rounded h-32"
-          required
-        ></textarea>
-        <button
-          type="submit"
-          className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
-        >
-          Send Message
-        </button>
-      </form>
+    <div className="container my-5">
+      <div className="row justify-content-center">
+        <div className="col-md-8 col-lg-6">
+          <div className="card shadow border-0">
+            <div className="card-body p-4">
+              <h2 className="text-center mb-4">Contact Us</h2>
+              <form onSubmit={handleSubmit}>
+                <div className="mb-3">
+                  <label htmlFor="name" className="form-label">Your Name</label>
+                  <input
+                    type="text"
+                    className="form-control border rounded"
+                    id="name"
+                    name="name"
+                    value={form.name}
+                    onChange={handleChange}
+                    placeholder="Enter your name"
+                    required
+                  />
+                </div>
+
+                <div className="mb-3">
+                  <label htmlFor="email" className="form-label">Your Email</label>
+                  <input
+                    type="email"
+                    className="form-control border rounded"
+                    id="email"
+                    name="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    placeholder="Enter your email"
+                    required
+                  />
+                </div>
+
+                <div className="mb-3">
+                  <label htmlFor="message" className="form-label">Your Message</label>
+                  <textarea
+                    className="form-control border rounded"
+                    id="message"
+                    name="message"
+                    rows="4"
+                    value={form.message}
+                    onChange={handleChange}
+                    placeholder="Write your message..."
+                    required
+                  ></textarea>
+                </div>
+
+                <div className="d-grid">
+                  <button type="submit" className="btn btn-primary">
+                    <i className="bi bi-send me-2"></i>Send Message
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
