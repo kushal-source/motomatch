@@ -1,20 +1,28 @@
 import { useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import AOS from 'aos';
-import { Link } from 'react-router-dom';
 import 'aos/dist/aos.css';
 import Bike from '../bike/bike';
 import AboutUs from '../about/about';
 import ContactUs from '../contact/contact';
 import './homeafterlogin.css';
 
-function HomeAfterLogin() {
+function HomeAfterLogin({ setToken }) {
+  const navigate = useNavigate();
+
   useEffect(() => {
     AOS.init({
       duration: 1000,
-      once: true, // animate only once when element comes into view
-      offset: 100, // start animation a bit earlier on scroll
+      once: true,
+      offset: 100,
     });
   }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setToken(null); // This updates state in App.jsx and re-renders everything
+    navigate('/'); // Redirect to home
+  };
 
   return (
     <>
@@ -47,17 +55,17 @@ function HomeAfterLogin() {
                 <a className="nav-link" href="#contact">Contact</a>
               </li>
               <li className="nav-item">
-      <Link Link className="nav-link" to="/list">MyList</Link>  {/* Updated */}
-    </li>
+                <Link className="nav-link" to="/list">MyList</Link>
+              </li>
             </ul>
-            <button className="btn btn-outline-light ms-auto">
+            <button className="btn btn-outline-light ms-auto" onClick={handleLogout}>
               <i className="bi bi-box-arrow-right me-1"></i> Logout
             </button>
           </div>
         </div>
       </nav>
 
-      {/* Hero Section (no AOS animation) */}
+      {/* Hero Section */}
       <div id="home" className="hero-section">
         <div className="overlay">
           <h1 className="display-3 text-white">Welcome to MotoMatch</h1>
@@ -68,11 +76,9 @@ function HomeAfterLogin() {
       </div>
 
       {/* Bikes Section */}
-      {/* Bikes Section */}
-<div id="bikes" className="section pt-5 mt-5" data-aos="fade-up">
-  <Bike />
-</div>
-
+      <div id="bikes" className="section pt-5 mt-5" data-aos="fade-up">
+        <Bike />
+      </div>
 
       {/* About Us Section */}
       <div id="about" className="section p-5 bg-light" data-aos="fade-up">

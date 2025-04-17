@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 function Signup() {
+  const navigate = useNavigate();
   const [formErrors, setFormErrors] = useState({
     name: '',
     email: '',
@@ -44,7 +45,7 @@ function Signup() {
   
         if (response.ok) {
           alert('Signup successful!');
-          // You can also redirect user to login page
+          navigate('/login'); // Redirect to login page after success
         } else {
           alert(data.message || 'Signup failed');
         }
@@ -54,7 +55,6 @@ function Signup() {
       }
     }
   };
-  
 
   return (
     <div className="container d-flex justify-content-center align-items-center vh-100">

@@ -1,43 +1,45 @@
-import { useEffect } from 'react';  // Add this import statement
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './components/register/login';
 import Signup from './components/register/signup';
 import Header from './components/header/header';
 import HomeAfterLogin from './components/home/HomeAfterLogin';
-import List from './components/list/list';  // Importing List Component
-import 'aos/dist/aos.css';  // Importing AOS CSS for animation styles
-import AOS from 'aos'; // Importing AOS JS to handle animations
+import List from './components/list/list';
+import 'aos/dist/aos.css';
+import AOS from 'aos';
 import './App.css';
 
 function App() {
-  const token = localStorage.getItem('token');
-  
+  // Initialize state with the token stored in localStorage (or null if not present)
+  const [token, setToken] = useState(() => localStorage.getItem('token'));
+
   useEffect(() => {
+    // Initialize animations (AOS)
     AOS.init({ duration: 1000 });
   }, []);
 
   return (
     <Router>
       <Routes>
-        {/* Login Route: If not logged in, show login page. Otherwise, redirect to Home */}
+        {/* Login Route */}
         <Route
           path="/login"
-          element={!token ? <Login /> : <Navigate to="/" replace />}
+          element={!token ? <Login setToken={setToken} /> : <Navigate to="/" replace />}
         />
         
-        {/* Signup Route: If not logged in, show signup page. Otherwise, redirect to Home */}
+        {/* Signup Route */}
         <Route
           path="/signup"
-          element={!token ? <Signup /> : <Navigate to="/" replace />}
+          element={!token ? <Signup setToken={setToken} /> : <Navigate to="/" replace />}
         />
 
-        {/* Home Route: If logged in, show HomeAfterLogin, otherwise show Header */}
+        {/* Home Route */}
         <Route
           path="/"
-          element={token ? <HomeAfterLogin /> : <Header />}
+          element={token ? <HomeAfterLogin setToken={setToken} /> : <Header token={token} setToken={setToken} />}
         />
 
-        {/* Route for My List page */}
+        {/* My List Page */}
         <Route path="/list" element={<List />} />
 
         {/* Fallback route */}
