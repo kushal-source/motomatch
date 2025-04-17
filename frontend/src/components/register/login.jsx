@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import './login.css'; 
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -19,7 +20,6 @@ function Login() {
 
     let errors = {};
 
-    // Validation
     if (!/^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com)$/.test(emailTrimmed)) {
       errors.email = 'Please enter a valid email address ending with @gmail.com or @yahoo.com';
     }
@@ -43,10 +43,9 @@ function Login() {
         const data = await response.json();
 
         if (response.ok) {
-          // ✅ Store token and navigate
           localStorage.setItem('token', data.token);
           navigate('/home');
-          window.location.reload(); // To refresh and reflect new login status
+          window.location.reload();
         } else {
           setFormErrors({ password: data.message || 'Login failed' });
         }
@@ -58,41 +57,44 @@ function Login() {
   };
 
   return (
-    <div className="container d-flex justify-content-center align-items-center vh-100">
-      <div className="card p-5 shadow-lg" style={{ maxWidth: '400px', width: '100%' }}>
-        <h2 className="mb-4 text-center">Login to MotoMatch</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <label>Email</label>
-            <input
-              type="email"
-              className="form-control"
-              placeholder="Enter email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            {formErrors.email && <small className="text-danger">{formErrors.email}</small>}
-          </div>
-          <div className="mb-3">
-            <label>Password</label>
-            <input
-              type="password"
-              className="form-control"
-              placeholder="Enter password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            {formErrors.password && <small className="text-danger">{formErrors.password}</small>}
-          </div>
-          <button type="submit" className="btn btn-primary w-100 mt-3">
-            Login
-          </button>
-        </form>
-        <p className="mt-3 text-center">
-          Don't have an account? <Link to="/signup">Sign up</Link>
-        </p>
+    <div className="login-container">
+      <div className="login-overlay">
+        <div className="login-card">
+          <h2 className="text-center">🏍️ Welcome to MotoMatch</h2>
+          <p className="text-center mb-4">Login to explore your next ride</p>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label>Email</label>
+              <input
+                type="email"
+                className="form-control"
+                placeholder="Enter email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              {formErrors.email && <small className="text-danger">{formErrors.email}</small>}
+            </div>
+            <div className="form-group mt-3">
+              <label>Password</label>
+              <input
+                type="password"
+                className="form-control"
+                placeholder="Enter password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              {formErrors.password && <small className="text-danger">{formErrors.password}</small>}
+            </div>
+            <button type="submit" className="btn btn-warning w-100 mt-4">
+              🛵 Login
+            </button>
+          </form>
+          <p className="mt-3 text-center">
+            Don't have an account? <Link to="/signup">Sign up</Link>
+          </p>
+        </div>
       </div>
     </div>
   );
