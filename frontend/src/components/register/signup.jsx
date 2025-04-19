@@ -45,6 +45,9 @@ function Signup() {
         const data = await response.json();
 
         if (response.ok) {
+          // 👉 Store user info in localStorage for use in ContactUs
+          localStorage.setItem("user", JSON.stringify({ name, email }));
+
           alert('Signup successful!');
           navigate('/login');
         } else {

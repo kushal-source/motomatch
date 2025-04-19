@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import './list.css'
 
 function MyList() {
   const [myList, setMyList] = useState([]);
@@ -20,63 +21,38 @@ function MyList() {
   };
 
   return (
-    <div className="container mt-4 px-3">
-      <h2 className="text-center mb-4">My List</h2>
+    <div className="mylist-container">
+      <h2 className="mylist-heading">🏍️ My Wishlist</h2>
       <div className="row">
         {myList.length === 0 ? (
-          <p className="text-center">No bikes added to your list yet.</p>
+          <p className="text-center text-light">No bikes added to your list yet.</p>
         ) : (
           myList.map((bike, index) => (
             <div className="col-md-4 mb-4" key={index}>
-              <div
-                className="card border shadow-sm"
-                style={{
-                  borderRadius: '16px',
-                  transition: 'transform 0.2s ease',
-                  cursor: 'pointer',
-                }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.transform = 'scale(1.02)')
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.transform = 'scale(1)')
-                }
-              >
+              <div className="bike-card" onClick={() => toggleBikeDetails(bike)}>
                 <img
                   src={bike.imageUrl}
                   alt={bike.name}
-                  className="card-img-top"
-                  style={{
-                    maxHeight: '200px',
-                    objectFit: 'cover',
-                    borderTopLeftRadius: '16px',
-                    borderTopRightRadius: '16px',
-                  }}
-                  onClick={() => toggleBikeDetails(bike)}
+                  className="bike-img"
                 />
-                <div className="card-body" onClick={() => toggleBikeDetails(bike)}>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <h5 className="card-title mb-0">{bike.name}</h5>
+                <div className="bike-body">
+                  <div className="bike-header">
+                    <h5>{bike.name}</h5>
                     <button
-                      className="btn btn-sm"
-                      style={{ color: 'red' }}
+                      className="remove-btn"
                       onClick={(e) => {
-                        e.stopPropagation(); // Prevent card click
+                        e.stopPropagation();
                         removeFromList(bike);
                       }}
                     >
-                      <i className="bi bi-heart-fill fs-5"></i>
+                      <i className="bi bi-heart-fill"></i>
                     </button>
                   </div>
-                  <p className="card-text mb-1">
-                    <strong>Brand:</strong> {bike.brand}
-                  </p>
-                  <p className="card-text">
-                    <strong>Price:</strong> ₹{bike.price.toLocaleString()}
-                  </p>
+                  <p><strong>Brand:</strong> {bike.brand}</p>
+                  <p><strong>Price:</strong> ₹{bike.price.toLocaleString()}</p>
 
                   {expandedIndex === bike.name && (
-                    <div className="mt-3">
+                    <div className="bike-details mt-2">
                       <ul className="list-group list-group-flush">
                         <li className="list-group-item"><strong>Seat Height:</strong> {bike.seatHeightMm} mm</li>
                         <li className="list-group-item"><strong>Type:</strong> {bike.type}</li>

@@ -1,16 +1,54 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const ContactUs = () => {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const [sent, setSent] = useState(false);
+
+  // Load user info from localStorage on mount
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("user"));
+    if (userData) {
+      setForm((prev) => ({
+        ...prev,
+        name: userData.name || "",
+        email: userData.email || "",
+      }));
+    }
+  }, []);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Thanks for reaching out! We'll get back to you soon.");
-    setForm({ name: "", email: "", message: "" });
+
+    const formData = new FormData();
+    formData.append("name", form.name);
+    formData.append("email", form.email);
+    formData.append("message", form.message);
+    formData.append("_captcha", "false");
+
+    try {
+      const res = await fetch("https://formsubmit.co/khushal.sharma130771@marwadiuniversity.ac.in", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (res.ok) {
+        setSent(true);
+        setForm({ ...form, message: "" });
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      alert("An error occurred. Please try again later.");
+    }
   };
 
   return (
@@ -20,6 +58,14 @@ const ContactUs = () => {
           <div className="card shadow border-0">
             <div className="card-body p-4">
               <h2 className="text-center mb-4">Contact Us</h2>
+
+              {sent && (
+                <div className="alert alert-success text-center" role="alert">
+                  <i className="bi bi-check-circle-fill me-2"></i>
+                  Message sent successfully!
+                </div>
+              )}
+
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">Your Name</label>
@@ -29,9 +75,7 @@ const ContactUs = () => {
                     id="name"
                     name="name"
                     value={form.name}
-                    onChange={handleChange}
-                    placeholder="Enter your name"
-                    required
+                    disabled
                   />
                 </div>
 
@@ -43,9 +87,7 @@ const ContactUs = () => {
                     id="email"
                     name="email"
                     value={form.email}
-                    onChange={handleChange}
-                    placeholder="Enter your email"
-                    required
+                    disabled
                   />
                 </div>
 
@@ -69,6 +111,7 @@ const ContactUs = () => {
                   </button>
                 </div>
               </form>
+
             </div>
           </div>
         </div>
