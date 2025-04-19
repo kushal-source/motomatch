@@ -1,4 +1,3 @@
-/* homeafterlogin.css */
 
 /* Header Styling */
 .header {
@@ -7,7 +6,7 @@
   }
   
   .navbar {
-    background-color: rgba(0, 0, 0, 0.7); /* Transparent background for navbar */
+    background-color: rgba(0, 0, 0, 0.7); 
     border-radius: 0;
   }
   
@@ -33,7 +32,7 @@
   .hero-section {
     background: url('./images/harley-davidson-zGzXsJUBQfs-unsplash.jpg') no-repeat center center;
     background-size: cover;
-    height: 100vh; /* Full viewport height */
+    height: 100vh; 
     position: relative;
     display: flex;
     justify-content: center;
@@ -47,7 +46,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Dark overlay for better text visibility */
+    background: rgba(0, 0, 0, 0.5); 
     display: flex;
     justify-content: center;
     align-items: center;

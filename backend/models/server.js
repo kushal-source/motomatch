@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const authRoutes = require('../routes/auth'); // ✅ Correct import
+const authRoutes = require('../routes/auth'); 
 
 const app = express();
 
@@ -17,8 +17,8 @@ mongoose.connect('mongodb://localhost:27017/motoMatchDB', {
 .then(() => console.log("Connected to MongoDB"))
 .catch(err => console.log(err));
 
-// Use your auth route (important: must be a function)
-app.use('/api/auth', authRoutes);  // ✅ This is the line that fixes your error
+
+app.use('/api/auth', authRoutes);  
 
 // Test route
 app.get("/", (req, res) => {

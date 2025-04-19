@@ -1,8 +1,7 @@
-/* Full-screen background image for the header */
 .hero-section {
   background: url('./harley-davidson-zGzXsJUBQfs-unsplash.jpg') no-repeat center center;
   background-size: cover;
-  height: 100vh; /* Full viewport height */
+  height: 100vh; 
   position: relative;
   display: flex;
   justify-content: center;
@@ -16,7 +15,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Dark overlay for better text visibility */
+  background: rgba(0, 0, 0, 0.5); 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,16 +24,16 @@
 }
 
 .hero-section h1 {
-  font-size: 4rem; /* Large title */
+  font-size: 4rem; 
   font-weight: bold;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Text shadow for readability */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); 
   color: white;
 }
 
 .hero-section p {
   font-size: 1.5rem;
   font-weight: 300;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Subtle text shadow */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); 
   color: white;
 }
 

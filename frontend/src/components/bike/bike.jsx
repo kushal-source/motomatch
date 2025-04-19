@@ -82,7 +82,7 @@ function DirectSearchForm() {
         }}
       />
 
-      {/* Suggestions Dropdown */}
+      
       {suggestions.length > 0 && query && (
         <ul
           className="list-group position-absolute mt-1 shadow-sm"
@@ -119,7 +119,7 @@ function DirectSearchForm() {
         Search
       </button>
 
-      {/* Result */}
+      
       {result && (
         <div className="mt-4 card border-0 shadow-sm p-3" style={{ borderRadius: '18px' }}>
           <h4 className="mb-3 text-center fw-bold" style={{ fontSize: '22px' }}>
@@ -150,7 +150,7 @@ function DirectSearchForm() {
             <li className="list-group-item"><strong>Year Launched:</strong> {result.yearLaunched}</li>
           </ul>
 
-          {/* Add to Wishlist Button */}
+          
           <button
             type="button"
             className={`btn ${

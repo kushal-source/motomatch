@@ -1,5 +1,3 @@
-/* login.css */
-
 .login-container {
     background-image: url('https://motofever.com/cdn/shop/articles/garin-chadwick-g2N5xvtS1s8-unsplash.jpg?v=1668696914&width=2048'); /* Motorcycle bg */
     background-size: cover;
@@ -13,7 +11,7 @@
   
   .login-overlay {
     backdrop-filter: blur(6px);
-    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    background-color: rgba(0, 0, 0, 0.5); 
     width: 100%;
     height: 100%;
     display: flex;

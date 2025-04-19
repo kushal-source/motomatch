@@ -1,8 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const User = require('../models/User');  // Import the User model
-
+const User = require('../models/User');  
 const router = express.Router();
 
 // Signup Route
@@ -51,7 +50,7 @@ router.post('/login', async (req, res) => {
   }
 
   // Create and send a JWT token
-  const token = jwt.sign({ userId: user._id }, 'your_jwt_secret', { expiresIn: '1h' });
+  const token = jwt.sign({ userId: user._id }, 'ks@_2811gs', { expiresIn: '1h' });
 
   res.status(200).json({
     message: "Login successful",

@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import './signup.css'; // 👈 Make sure this line is added
+import './signup.css'; 
 
 function Signup() {
   const navigate = useNavigate();
@@ -45,7 +45,6 @@ function Signup() {
         const data = await response.json();
 
         if (response.ok) {
-          // 👉 Store user info in localStorage for use in ContactUs
           localStorage.setItem("user", JSON.stringify({ name, email }));
 
           alert('Signup successful!');
